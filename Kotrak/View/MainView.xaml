@@ -58,20 +58,26 @@
                         Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </Grid>
 
-                <Grid Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                     <Button
-                        HorizontalAlignment="Left"
                         Height="30"
-                        Width="90"
+                        Margin="5,0,0,0"
+                        Width="50"
                         Command="{Binding RemoveCommand}"
                         Content="Remove" />
                     <Button
-                        HorizontalAlignment="Right"
                         Height="30"
-                        Width="90"
+                        Margin="5,0,0,0"
+                        Width="50"
+                        Command="{Binding EditCommand}"
+                        Content="Edit" />
+                    <Button
+                        Height="30"
+                        Margin="5,0,0,0"
+                        Width="50"
                         Command="{Binding AddCommand}"
                         Content="Add" />
-                </Grid>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

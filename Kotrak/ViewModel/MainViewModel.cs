@@ -36,6 +36,14 @@ namespace Kotrak.ViewModel
             set
             {
                 _selectedCustomer = value;
+
+                if (value != null)
+                {
+                    Name = value.Name;
+                    City = value.City;
+                    Phone = value.Phone;
+                }
+
                 RaisePropertyChanged();
             }
         }
@@ -92,6 +100,36 @@ namespace Kotrak.ViewModel
                         City = "";
                         Phone = "";
 
+                        SelectedCustomer = null;
+                        Customers = new ObservableCollection<Customer>(_dbManager.CustomerService.Get());
+                    }));
+            }
+        }
+
+        private RelayCommand _editCommand;
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                return _editCommand
+                    ?? (_editCommand = new RelayCommand(
+                    () =>
+                    {
+
+                        if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(City) || string.IsNullOrWhiteSpace(Phone) || SelectedCustomer == null)
+                            return;
+
+                        SelectedCustomer.Name = Name;
+                        SelectedCustomer.Phone = Phone;
+                        SelectedCustomer.City = City;
+
+                        _dbManager.CustomerService.Update(SelectedCustomer);
+
+                        Name = "";
+                        City = "";
+                        Phone = "";
+
+                        SelectedCustomer = null;    
                         Customers = new ObservableCollection<Customer>(_dbManager.CustomerService.Get());
                     }));
             }
@@ -115,6 +153,7 @@ namespace Kotrak.ViewModel
                         City = "";
                         Phone = "";
 
+                        SelectedCustomer = null;
                         Customers = new ObservableCollection<Customer>(_dbManager.CustomerService.Get());
                     }));
             }

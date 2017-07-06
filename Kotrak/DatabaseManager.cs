@@ -9,11 +9,8 @@ namespace Kotrak
 {
     public class DatabaseManager
     {
-        private DbModelContainer _dbContext;
-
-        public DatabaseManager(DbModelContainer dbContext, CustomerService customerService)
+        public DatabaseManager(CustomerService customerService)
         {
-            _dbContext = dbContext;
             CustomerService = customerService;
         }
 
